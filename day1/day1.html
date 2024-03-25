@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      let a = "1";
+      let b = [1, 2, 3, 4, 5];
+      console.log(b[0], b[2]);
+      let c = [...b, 6, 7];
+
+      function d(a, b) {
+        return a + b;
+      }
+      var e = function (a, b) {
+        return a + b;
+      };
+
+      const f = (a, b) => {
+        return a + b;
+      };
+
+      const g = (a, b) => a + b;
+
+      console.log(g(1, 2));
+
+      if (true) {
+        console.log("true");
+      } else {
+        console.log("false");
+      }
+
+      let colors = [
+        "red",
+        "blue",
+        "yellow",
+        "gold",
+        "black",
+        "red",
+        "blue",
+        "yellow",
+        "gold",
+        "black",
+      ];
+      const fun = (i) => {
+        return `<div style="font-size:${i * 10}px;color:${
+          colors[i]
+        }">${i}</div>`;
+      };
+      for (let i = 0; i < 10; i++) {
+        console.log(i);
+        // break; // To end
+        // continue; // to continue
+        // document.write("<div>" + i + "</div>");
+        // `<div style="font-size:${i * 10}px;color:${colors[i]}">${i}</div>`
+        document.write(fun(i));
+      }
+
+      let fruits = [
+        "orange",
+        "apple",
+        "grapes",
+        "mango",
+        "papaya",
+        "lemon",
+        "pineapple",
+        "cucumber",
+        "pears",
+        "watermelon",
+      ];
+
+      document.write("<table border='1'>");
+      for (let i = 0; i < 10; i++) {
+        document.write("<tr>");
+        for (let j = 0; j < 10; j++) {
+          document.write("<td>" + (i * 10 + (j + 1)) + "</td>");
+        }
+        document.write("</tr>");
+      }
+      document.write("</table>");
+    </script>
+  </head>
+  <body></body>
+</html>
