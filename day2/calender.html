@@ -77,6 +77,7 @@
         let day = 1;
         let start = false;
         let end = false;
+
         console.log(year, month);
         console.log(today);
         console.log(today.getDate());
@@ -86,6 +87,8 @@
         // sunday 0, monday 1 ... saturday 6
         console.log(today.getDay());
 
+        let now = new Date();
+
         let html =
           "<table border='1'><tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>";
         for (let i = 0; i < 6; i++) {
@@ -93,6 +96,13 @@
           for (let j = 0; j < 7; j++) {
             // Start when, use getDay()
             let className = j === 0 || j === 6 ? "weekend" : "";
+            if (
+              now.getFullYear() == year &&
+              now.getMonth() + 1 == month &&
+              now.getDate() == day
+            ) {
+              className = "today";
+            }
             if (i === 0 && j === today.getDay()) start = true;
             if (start)
               html += `<td class="${className}">${day++} 
@@ -127,6 +137,9 @@
       }
       td.weekend {
         background-color: gold;
+      }
+      td.today {
+        background-color: skyblue;
       }
       div.holiday {
         color: red;
