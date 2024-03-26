@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calender Task</title>
+    <script>
+      const calender = () => {
+        console.log("calender");
+        let day = 1;
+        let start = false;
+        let year = document.querySelector("#year").value;
+        let month = document.querySelector("#month").value;
+
+        // Determine the total number of days in the selected month and year
+        let totalDaysInMonth = new Date(year, month, 0).getDate();
+
+        // year, month( starts with zero), date
+        // let today = new Date(2024, 0, 1);
+        let today = new Date(year, month - 1, 1);
+        console.log(year, month);
+        console.log(today);
+        console.log(today.getDate());
+        console.log(today.getFullYear());
+        // Month January is 0 etc
+        console.log(today.getMonth());
+        // sunday 0, monday 1 ... saturday 6
+        console.log(today.getDay());
+
+        let html =
+          "<table border='1'><tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>";
+        for (let i = 0; i < 6; i++) {
+          html += "<tr>";
+          for (let j = 0; j < 7; j++) {
+            // Start when, use getDay()
+            if (i === 0 && j === today.getDay()) start = true;
+            if (start && day <= totalDaysInMonth) {
+              html += `<td>${day++}</td>`;
+            } else {
+              html += "<td></td>";
+            }
+          }
+          html += "</tr>";
+        }
+        html += "</table>";
+        document.querySelector("#here").innerHTML = html;
+      };
+    </script>
+  </head>
+  <body>
+    <select name="year" id="year" onchange="calender()">
+      <option value="2024">2024</option>
+      <option value="2025">2025</option>
+      <option value="2026">2026</option>
+      <option value="2027">2027</option>
+      <option value="2028">2028</option>
+    </select>
+
+    <select name="month" id="month" onchange="calender()">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+      <option value="11">11</option>
+      <option value="12">12</option>
+    </select>
+
+    <div id="here">
+      <table id="here" border="1"></table>
+    </div>
+  </body>
+</html>
