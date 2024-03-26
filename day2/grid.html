@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #grid {
+        border-spacing: 0;
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 10px;
+      }
+      #grid th,
+      #grid td {
+        border: solid 1px #aaa;
+        padding: 10px;
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="text" id="keyword" />
+    <button onclick="search()">Search</button>
+    <div class="">
+      <table id="grid">
+        <thead>
+          <tr>
+            <th>No.</th>
+            <th>Dept</th>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Birth Day</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <div class="pagination"></div>
+    </div>
+    <script type="text/javascript" async>
+      const data = [
+        {
+          dept: "TRA1",
+          name: "Name 1",
+          position: "Senior",
+          birthDay: "2000-01-01",
+        },
+        {
+          dept: "TRA1",
+          name: "Name 2",
+          position: "Senior",
+          birthDay: "2000-01-01",
+        },
+        {
+          dept: "TRA1",
+          name: "Name 3",
+          position: "Senior",
+          birthDay: "2000-01-01",
+        },
+        {
+          dept: "TRA2",
+          name: "Name 4",
+          position: "Senior",
+          birthDay: "2000-01-01",
+        },
+        {
+          dept: "TRA2",
+          name: "Name 5",
+          position: "Senior",
+          birthDay: "2000-01-01",
+        },
+        {
+          dept: "TRA2",
+          name: "Name 6",
+          position: "Senior",
+          birthDay: "2000-01-01",
+        },
+        {
+          dept: "TRA3",
+          name: "Name 7",
+          position: "Senior",
+          birthDay: "2000-01-01",
+        },
+        {
+          dept: "TRA3",
+          name: "Name 8",
+          position: "Senior",
+          birthDay: "2000-01-01",
+        },
+        {
+          dept: "TRA3",
+          name: "Name 9",
+          position: "Senior",
+          birthDay: "2000-01-01",
+        },
+        {
+          dept: "TRA4",
+          name: "Name 10",
+          position: "Senior",
+          birthDay: "2000-01-01",
+        },
+        {
+          dept: "TRA5",
+          name: "Name 11",
+          position: "Senior",
+          birthDay: "2000-01-01",
+        },
+        {
+          dept: "TRA6",
+          name: "Name 12",
+          position: "Senior",
+          birthDay: "2000-01-01",
+        },
+        {
+          dept: "TRA6",
+          name: "Name 13",
+          position: "Senior",
+          birthDay: "2000-01-01",
+        },
+        {
+          dept: "TRA6",
+          name: "Name 14",
+          position: "Senior",
+          birthDay: "2000-01-01",
+        },
+        {
+          dept: "TRA6",
+          name: "Name 15",
+          position: "Senior",
+          birthDay: "2000-01-01",
+        },
+      ];
+
+      //const data = getData(100);
+
+      const search = () => {
+        grid(1);
+      };
+
+      const grid = (page = 1, pagesize = 10) => {
+        let keyword = document.querySelector("#keyword").value;
+        let searchData = data;
+
+        if (keyword != "") {
+          searchData = data.filter((item) => {
+            return (
+              item.dept.indexOf(keyword) > -1 ||
+              item.name.indexOf(keyword) > -1 ||
+              item.position.indexOf(keyword) > -1
+            );
+          });
+        }
+        console.log(searchData);
+
+        let start = (page - 1) * pagesize;
+        let end = page * pagesize;
+
+        let gridData = searchData.filter((item, index) => {
+          return index >= start && index < end;
+        });
+
+        let html = "";
+
+        if (gridData.length <= 0) {
+          html = `<tr><td colspan="5">No data.</td></tr>`;
+        } else {
+          gridData.map((item, index) => {
+            html += `<tr><td>${index}</td><td>${item.dept}</td><td>${item.name}</td><td>${item.position}</td><td>${item.birthDay}</td></tr>`;
+          });
+        }
+        document.querySelector("#grid tbody").innerHTML = html;
+
+        // pagination use totalCount, pagesize
+        // 1 - 10 = 1 page
+        // 11 - 20 = 2 page
+        // 21 - 30 = 3 page
+
+        // hint Math.ceil(number)
+        //Math.ceil(1.1) => 2
+        // Math.floor(1.9) => 1
+        let totalCount = searchData.length;
+        let totalPage = Math.ceil(totalCount / pagesize);
+
+        let pageHtml = "";
+
+        for (let i = 1; i <= totalPage; i++) {
+          pageHtml += `<a href="#" onclick="grid(${i})">${i}</a>&nbsp;`;
+        }
+
+        document.querySelector(".pagination").innerHTML = pageHtml;
+      };
+    </script>
+  </body>
+</html>
