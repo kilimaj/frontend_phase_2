@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>calendar Task</title>
+    <script type="text/javascript" async>
+      const holiDays = [
+        { year: 2024, month: 3, date: 29, name: "Good Friday" },
+        { year: 2024, month: 4, date: 1, name: "Easter Monday" },
+      ];
+      const schedules = [
+        { year: 2024, month: 3, date: 26, name: "Front-End Education" },
+        { year: 2024, month: 3, date: 3, name: "TRA Meeting" },
+      ];
+
+      // make getSchedule method
+
+      const getSchedule = (year, month, date) => {
+        const day = schedules.filter((item) => {
+          return item.year == year && item.month == month && item.date == date;
+        });
+        if (day.length > 0) {
+          return `<div class="schedule">${day[0].name}</div>`;
+        }
+        return "";
+      };
+
+      const getHoliDay = (year, month, date) => {
+        const day = holiDays.filter((item) => {
+          return item.year == year && item.month == month && item.date == date;
+        });
+
+        if (day.length > 0) {
+          return `<div class="holiday">${day[0].name}</div>`;
+        }
+        return "";
+      };
+
+      const prev = () => {
+        let value = document.querySelector("#month").value;
+        value = value * 1 - 1;
+        if (value <= 0) {
+          document.querySelector("#year").value =
+            document.querySelector("#year").value * 1 - 1;
+          value = 12;
+        }
+        document.querySelector("#month").value = value;
+        calendar();
+      };
+
+      const next = () => {
+        let value = document.querySelector("#month").value;
+        value = value * 1 + 1;
+        if (value >= 13) {
+          document.querySelector("#year").value =
+            document.querySelector("#year").value * 1 + 1;
+          value = 1;
+        }
+        document.querySelector("#month").value = value;
+        calendar();
+      };
+      const calendar = () => {
+        console.log("calendar");
+        let year = document.querySelector("#year").value;
+        let month = document.querySelector("#month").value;
+
+        // Determine the total number of days in the selected month and year
+        let totalDaysInMonth = new Date(year, month, 0).getDate();
+
+        // year, month( starts with zero), date
+        // let today = new Date(2024, 0, 1);
+        let today = new Date(year, month - 1, 1);
+        let lastDay = new Date(year, month, 0);
+
+        let day = 1;
+        let start = false;
+        let end = false;
+        console.log(year, month);
+        console.log(today);
+        console.log(today.getDate());
+        console.log(today.getFullYear());
+        // Month January is 0 etc
+        console.log(today.getMonth());
+        // sunday 0, monday 1 ... saturday 6
+        console.log(today.getDay());
+
+        let html =
+          "<table border='1'><tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>";
+        for (let i = 0; i < 6; i++) {
+          html += "<tr>";
+          for (let j = 0; j < 7; j++) {
+            // Start when, use getDay()
+            let className = j === 0 || j === 6 ? "weekend" : "";
+            if (i === 0 && j === today.getDay()) start = true;
+            if (start)
+              html += `<td class="${className}">${day++} 
+                ${getHoliDay(year, month, day - 1)} ${getSchedule(
+                year,
+                month,
+                day - 1
+              )} 
+              </td>`;
+            else html += "<td></td>";
+            if (lastDay.getDate() === day - 1 && start === true) {
+              start = false;
+              end = true;
+            }
+          }
+          html += "</tr>";
+          if (end) break;
+        }
+        html += "</table>";
+        document.querySelector("#here").innerHTML = html;
+      };
+      document.addEventListener("DOMContentLoaded", calendar);
+    </script>
+    <style>
+      th {
+        width: 100px;
+      }
+      td {
+        text-align: right;
+        vertical-align: top;
+        height: 100px;
+      }
+      td.weekend {
+        background-color: gold;
+      }
+      div.holiday {
+        color: red;
+      }
+      div.schedule {
+        color: blue;
+      }
+    </style>
+  </head>
+  <body>
+    <select name="year" id="year" onchange="calendar()">
+      <option value="2024">2024</option>
+      <option value="2025">2025</option>
+      <option value="2026">2026</option>
+      <option value="2027">2027</option>
+      <option value="2028">2028</option>
+    </select>
+
+    <select name="month" id="month" onchange="calendar()">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+      <option value="11">11</option>
+      <option value="12">12</option>
+    </select>
+
+    <button onclick="prev()">Prev</button>
+    <button onclick="next()">Next</button>
+
+    <div id="here">
+      <table id="here" border="1"></table>
+    </div>
+  </body>
+</html>
