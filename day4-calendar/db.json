@@ -1,0 +1,35 @@
+{
+  "holidays": [
+    {
+      "id": "1",
+      "year": 2024,
+      "month": 3,
+      "date": 29,
+      "name": "Good Friday"
+    },
+    {
+      "id": "2",
+      "year": 2024,
+      "month": 4,
+      "date": 1,
+      "name": "Easter Monday"
+    }
+  ],
+
+  "schedules": [
+    {
+      "id": "1",
+      "year": 2024,
+      "month": 3,
+      "date": 26,
+      "name": "Front-End Education"
+    },
+    {
+      "id": "2",
+      "year": 2024,
+      "month": 3,
+      "date": 3,
+      "name": "TRA Meeting"
+    }
+  ]
+}

@@ -5,11 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "serve"
+    "serve": "serve",
+    "start-db": "json-server --watch db.json --port 3010"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "json-server": "^0.16.3",
     "serve": "^14.2.1"
   }
 }
