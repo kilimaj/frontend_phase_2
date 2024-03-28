@@ -3,17 +3,29 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { MyComponent, MyComponent2, MyComponent3, MyComponent4, MyComponent5 } from "./component/MyComp";
+import {
+  Calendar,
+  MyComponent,
+  MyComponent2,
+  MyComponent3,
+  MyComponent4,
+  MyComponent5,
+  MyComponent6,
+  MyComponent7,
+} from "./component/MyComp";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     {/* <App />
     <MyComponent param1={1} param2={2} param3={<div>param3</div>} /> */}
-    <MyComponent2 count={100} />
+    {/* <MyComponent2 count={100} />
     <MyComponent3 unit={2} />
     <MyComponent4 />
-    <MyComponent5 />
+    <MyComponent5 /> */}
+    <MyComponent6 />
+    <MyComponent7 />
+    <Calendar />
   </React.StrictMode>
 );
 
