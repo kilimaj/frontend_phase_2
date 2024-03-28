@@ -1,0 +1,24 @@
+{
+  "members": [
+    { "id": 1, "dept": "ICTD", "name": "John Kilima", "age": 30 },
+    { "id": 2, "dept": "TAx", "name": "Mary", "age": 33 },
+    { "id": 3, "dept": "FINANCE", "name": "Emily", "age": 30 },
+    { "id": 4, "dept": "ICTD", "name": "Greg", "age": 30 },
+    { "id": 5, "dept": "TAX", "name": "Lizy", "age": 30 },
+    { "id": 6, "dept": "TAX", "name": "Dawson", "age": 30 },
+    { "id": 7, "dept": "FINANCE", "name": "JLucas", "age": 30 },
+    { "id": 8, "dept": "FINACNCE", "name": "Amy", "age": 30 },
+    { "id": 9, "dept": "ICTD", "name": "Jofrey", "age": 30 },
+    { "id": 10, "dept": "ICTD", "name": "Bill", "age": 30 },
+    { "id": 11, "dept": "ICTD", "name": "Downey", "age": 30 },
+    { "id": 12, "dept": "TAX", "name": "Jack", "age": 30 },
+    { "id": 13, "dept": "FINANCE", "name": "Moses", "age": 30 },
+    { "id": 14, "dept": "FINANCE", "name": "Milly", "age": 30 },
+    { "id": 15, "dept": "TAX", "name": "Rodgers", "age": 30 },
+    { "id": 16, "dept": "TAX", "name": "Anthony", "age": 30 },
+    { "id": 17, "dept": "FINANCE", "name": "Godfrey", "age": 24 },
+    { "id": 18, "dept": "ICTD", "name": "Aneth", "age": 33 },
+    { "id": 19, "dept": "ICTD", "name": "Julieth", "age": 40 },
+    { "id": 20, "dept": "ICTD", "name": "Rose", "age": 30 }
+  ]
+}
